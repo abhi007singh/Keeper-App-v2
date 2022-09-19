@@ -27,7 +27,7 @@ function App() {
     });
   }
 
-  // Used in previous version
+  // -- Used in previous version --
   // function addItem(note) {
   //   setNotes((prevValue) => {
   //     return [...prevValue, note];
