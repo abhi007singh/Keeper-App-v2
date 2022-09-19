@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 import express from "express";
-import mongoose, { get } from "mongoose";
+import mongoose from "mongoose";
 import cors from "cors";
 
 const app = express();
@@ -43,9 +43,13 @@ app
       if (err) return console.log(err);
       res.send("Saved to DB.");
     });
-  })
+  });
+
 app.route("/:id").delete((req, res) => {
-    
+  Note.deleteOne({ _id: req.params.id }, (err, result) => {
+    if (err) console.log(err);
+    res.send(result);
+  });
 });
 
 const port = process.env.PORT;

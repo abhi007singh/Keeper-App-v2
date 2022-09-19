@@ -14,7 +14,7 @@ function App() {
         // console.log(data);
         setNotes(data);
       });
-  });
+  }, [notes]);
 
   function addItem(note) {
     // console.log(note);
@@ -35,11 +35,19 @@ function App() {
   // }
 
   function deleteItem(id) {
-    setNotes((prevNote) => {
-      return prevNote.filter((items, index) => {
-        return index !== id;
-      });
-    });
+
+    // -- previos version code --
+    // setNotes((prevNote) => {
+    //   return prevNote.filter((items, index) => {
+    //     return index !== id;
+    //   });
+    // });
+
+    // console.log(id);
+
+    fetch(`http://localhost:5000/${id}`, {
+      method: "DELETE",
+    }).then((res) => console.log(res));
   }
 
   return (
@@ -50,7 +58,7 @@ function App() {
         return (
           <Note
             key={index}
-            id={index}
+            id={slip._id}
             title={slip.title}
             content={slip.content}
             onDelete={deleteItem}
